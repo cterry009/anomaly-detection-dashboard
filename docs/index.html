@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard de detección de anomalías — presentación del proyecto</title><style>
+:root{--bg:#f6f5f1;--ink:#1b1f2a;--muted:#555b66;--line:#d9d6cc;--card:#fff;--acc:#0f6b5c;--acc2:#c2410c;--fe:#2d56c8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc)}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 20px 64px}
+header h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:8px 0 10px}
+.tag{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.lead{font-size:19px;color:var(--muted);max-width:760px;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+.chips li{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;font-size:14px}
+section{margin-top:44px}
+h2{font-size:24px;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.diagram{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.lanes{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:18px;align-items:start}
+.lane h4{margin:0 0 10px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.node{display:block;width:100%;text-align:left;border:1.5px solid var(--ink);background:var(--bg);border-radius:10px;padding:10px 12px;margin:0 0 10px;font:inherit;cursor:pointer}
+.node strong{display:block;font-size:15px}
+.node span{display:block;font-size:13px;color:var(--muted)}
+.node:hover,.node:focus-visible{border-color:var(--acc);outline:2px solid var(--acc);outline-offset:1px}
+.node[aria-pressed="true"]{background:#e3f1ec;border-color:var(--acc)}
+.node.fe{border-left:6px solid var(--fe)}.node.be{border-left:6px solid var(--acc)}.node.ext{border-left:6px solid var(--acc2)}
+.flow{font-size:14px;color:var(--muted);margin:6px 0 14px}
+.detail{margin-top:8px;border-top:1px solid var(--line);padding-top:16px;min-height:120px}
+.detail h3{margin:0 0 6px}.detail ul{margin:8px 0 0;padding-left:20px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);margin-top:4px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.io{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+pre{margin:8px 0 0;background:#1b1f2a;color:#e8e6df;border-radius:10px;padding:14px;overflow:auto;font-size:13px;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#efede6;font-weight:600}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+.tablebox{overflow-x:auto;border-radius:12px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.figs figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.figs img{width:100%;height:auto;display:block;border-radius:8px}
+.figs figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+footer{margin-top:48px;color:var(--muted);font-size:14px}
+@media (max-width:760px){.lanes{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<span class="tag">Proyecto de ML · Detección de anomalías</span>
+<h1>Dashboard de detección de anomalías</h1>
+<p class="lead">Detecta transacciones anómalas con Isolation Forest sobre un flujo sintético de pagos y las muestra en un dashboard interactivo de Streamlit.</p>
+<ul class="chips"><li>Python</li><li>scikit-learn (Isolation Forest)</li><li>pandas</li><li>Streamlit</li><li>Plotly</li><li>seaborn</li></ul>
+</header>
+<section>
+<h2>Qué hace</h2>
+<div class="grid3">
+<div class="card"><h3>Datos con anomalías controladas</h3><p>5000 transacciones sintéticas con un 2 % de casos raros: montos muy altos o ráfagas de madrugada.</p></div>
+<div class="card"><h3>Isolation Forest</h3><p>Modelo no supervisado: aprende qué es normal y marca lo que se aísla fácil.</p></div>
+<div class="card"><h3>Dashboard interactivo</h3><p>Cambia el tamaño de la muestra y la contaminación y mira las métricas y gráficas al instante.</p></div>
+</div>
+</section>
+<section>
+<h2>Cómo está construido</h2>
+<p class="sub">Haz clic en un bloque para ver qué hace, qué recibe y qué entrega.</p>
+<div class="diagram">
+<div class="lanes">
+<div class="lane">
+<h4>Entrada</h4>
+<button class="node ext" data-id="datos"><strong>Transacciones sintéticas</strong><span>5000 filas, seed 42</span></button>
+</div>
+<div class="lane">
+<h4>Pipeline (src/)</h4>
+<button class="node be" data-id="proc"><strong>data_processing.py</strong><span>generación y escalado</span></button>
+<button class="node be" data-id="model"><strong>model.py</strong><span>Isolation Forest</span></button>
+<button class="node be" data-id="eval"><strong>evaluate.py</strong><span>precision, recall, F1</span></button>
+<button class="node be" data-id="run"><strong>run_pipeline.py</strong><span>pipeline sin interfaz</span></button>
+</div>
+<div class="lane">
+<h4>Salidas</h4>
+<button class="node fe" data-id="dash"><strong>dashboard.py</strong><span>app de Streamlit</span></button>
+<button class="node fe" data-id="res"><strong>results/</strong><span>métricas, modelo, figuras</span></button>
+</div>
+</div>
+<p class="flow">Flujo: datos → data_processing.py → model.py → evaluate.py → results/ y dashboard.py</p>
+<div class="legend"><span><i style="background:var(--fe)"></i>Interfaz</span><span><i style="background:var(--acc)"></i>Código del proyecto</span><span><i style="background:var(--acc2)"></i>Datos o servicio externo</span></div>
+<div class="detail" id="detail" aria-live="polite">
+<h3>Elige un bloque</h3>
+<p class="sub">El detalle aparece aquí, con enlace al código fuente.</p>
+</div>
+</div>
+</section>
+<section>
+<h2>Entra y sale</h2>
+<div class="io">
+<div class="card">
+<h3>Entrada: transacciones</h3>
+<p>Primeras filas de data/synthetic_transactions.csv:</p>
+<pre>transaction_id,amount,hour,location_code,frequency_last_24h,is_anomaly
+TXN-000000,16.86,10.44,4,5,False
+TXN-000001,25.78,14.99,5,2,False</pre>
+</div>
+<div class="card">
+<h3>Salida: métricas</h3>
+<p>results/metrics.json:</p>
+<pre>{
+  &quot;precision&quot;: 0.98,
+  &quot;recall&quot;: 0.98,
+  &quot;f1&quot;: 0.98
+}</pre>
+</div>
+</div>
+</section>
+<section>
+<h2>Resultados</h2>
+<p class="sub">5000 transacciones sintéticas, seed 42, contaminación 0.02.</p>
+<div class="tablebox"><table>
+<thead><tr><th>Métrica</th><th>Valor</th></tr></thead>
+<tbody>
+<tr><td>Precision</td><td>0.98</td></tr>
+<tr><td>Recall</td><td>0.98</td></tr>
+<tr><td>F1</td><td>0.98</td></tr>
+</tbody>
+</table></div>
+</section>
+<section>
+<h2>Gráficas</h2>
+<div class="figs">
+<figure><img src="../results/figuras/flagged_scatter.png" alt="Transacciones marcadas como anómalas" loading="lazy"><figcaption>Transacciones marcadas como anómalas</figcaption></figure>
+<figure><img src="../results/figuras/score_distribution.png" alt="Distribución de puntajes del modelo" loading="lazy"><figcaption>Distribución de puntajes del modelo</figcaption></figure>
+</div>
+</section>
+<section>
+<h2>Correrlo</h2>
+<pre>python -m venv venv
+venv\Scripts\pip install -r requirements.txt
+venv\Scripts\python src/run_pipeline.py
+venv\Scripts\streamlit run src/dashboard.py</pre>
+<p class="sub" style="margin-top:12px">Diseño interno en <a href="https://github.com/cterry009/anomaly-detection-dashboard/blob/HEAD/docs/ARQUITECTURA.md">ARQUITECTURA.md</a> · <a href="https://github.com/cterry009/anomaly-detection-dashboard">repositorio</a></p>
+</section>
+<footer>Cristian Peña · Licencia MIT</footer>
+</div>
+<script>
+var SRC = "https://github.com/cterry009/anomaly-detection-dashboard/blob/HEAD/";
+var NODES = {"datos": {"t": "Transacciones sintéticas", "f": "data/synthetic_transactions.csv", "d": "Generadas por generate_synthetic_data(): normales con monto lognormal y horario laboral; anómalas con montos de 1500-8000 o ráfagas de madrugada.", "i": "n_samples, anomaly_rate, seed", "o": "DataFrame con is_anomaly como etiqueta de verdad"}, "proc": {"t": "data_processing.py", "f": "src/data_processing.py", "d": "Genera los datos y escala amount, hour y frequency_last_24h con StandardScaler; location_code queda como entero.", "i": "DataFrame crudo", "o": "X numérico y el scaler"}, "model": {"t": "model.py", "f": "src/model.py", "d": "Entrena IsolationForest (200 árboles) y devuelve puntajes continuos y etiquetas 0/1 (1 = anómalo). Guarda y carga el modelo con joblib.", "i": "X escalado", "o": "Puntajes y etiquetas"}, "eval": {"t": "evaluate.py", "f": "src/evaluate.py", "d": "Compara las etiquetas del modelo con la verdad y dibuja la distribución de puntajes y el scatter de casos marcados.", "i": "Etiquetas reales y predichas", "o": "Métricas y PNG"}, "run": {"t": "run_pipeline.py", "f": "src/run_pipeline.py", "d": "Genera datos, entrena, evalúa y guarda métricas, gráficas y el modelo.", "i": "—", "o": "results/ y data/"}, "dash": {"t": "dashboard.py", "f": "src/dashboard.py", "d": "Interfaz para explorar: elige parámetros, ve las transacciones marcadas y las métricas en vivo con gráficas de Plotly.", "i": "Parámetros del usuario", "o": "Tablas y gráficas interactivas"}, "res": {"t": "results/", "f": "results/metrics.json", "d": "metrics.json, isolation_forest_model.joblib y dos figuras.", "i": "Salida del pipeline", "o": "Archivos"}};
+var buttons = document.querySelectorAll('.node');
+var detail = document.getElementById('detail');
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+buttons.forEach(function(b){
+  b.setAttribute('aria-pressed','false');
+  b.addEventListener('click', function(){
+    var n = NODES[b.dataset.id];
+    buttons.forEach(function(x){x.setAttribute('aria-pressed','false');});
+    b.setAttribute('aria-pressed','true');
+    var link = n.f ? '<p><a href="'+SRC+n.f+'" target="_blank" rel="noopener">Ver el código: '+esc(n.f)+'</a></p>' : '';
+    detail.innerHTML = '<h3>'+esc(n.t)+'</h3><p>'+esc(n.d)+'</p><ul><li><strong>Recibe:</strong> '+esc(n.i)+'</li><li><strong>Entrega:</strong> '+esc(n.o)+'</li></ul>'+link;
+  });
+});
+</script>
+</body>
+</html>

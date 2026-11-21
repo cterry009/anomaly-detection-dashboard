@@ -1,5 +1,7 @@
 # anomaly-detection-dashboard
 
+[![CI](https://github.com/cterry009/anomaly-detection-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/cterry009/anomaly-detection-dashboard/actions/workflows/ci.yml)
+
 Dashboard interactivo en Streamlit que detecta transacciones anómalas en un flujo
 sintético de pagos, usando **Isolation Forest** (scikit-learn).
 
@@ -70,3 +72,22 @@ normales.
 El dashboard permite ajustar `contamination` en vivo desde la barra lateral: valores
 más altos que la tasa real (0.02) aumentan el recall marginalmente pero degradan la
 precision al marcar transacciones normales como anómalas.
+
+## Documentación
+
+- [docs/index.html](docs/index.html): página de presentación con el diagrama interactivo del pipeline.
+- [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md): módulos, flujo de datos y decisiones de diseño.
+- [CHANGELOG.md](CHANGELOG.md): historial de versiones.
+
+## Pruebas
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+GitHub Actions las corre en cada push.
+
+## Licencia
+
+[MIT](LICENSE)
